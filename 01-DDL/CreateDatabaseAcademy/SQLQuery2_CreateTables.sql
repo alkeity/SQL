@@ -4,55 +4,8 @@ IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Study
 BEGIN
 	CREATE TABLE StudyFields
 	(
-		id INT PRIMARY KEY IDENTITY(1,1),
+		id SMALLINT PRIMARY KEY IDENTITY(1,1),
 		study_field_name NVARCHAR(150) NOT NULL,
-	);
-END
-
-IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Groups')
-BEGIN
-	CREATE TABLE Groups
-	(
-		id INT PRIMARY KEY IDENTITY(1,1),
-		group_name NVARCHAR(16) NOT NULL,
-		study_field_id INT NOT NULL CONSTRAINT FK_Groups_StudyFields FOREIGN KEY REFERENCES StudyFields(id)
-	);
-END
-
-IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Students')
-BEGIN
-	CREATE TABLE Students
-	(
-		id BIGINT PRIMARY KEY IDENTITY(1,1),
-		first_name NVARCHAR(150) NOT NULL,
-		last_name NVARCHAR(150) NOT NULL,
-		middle_name NVARCHAR(150),
-		birth_date date NOT NULL,
-		group_id INT NOT NULL CONSTRAINT FK_Students_Groups FOREIGN KEY REFERENCES Groups(id)
-	);
-END
-
-IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Teachers')
-BEGIN
-	CREATE TABLE Teachers
-	(
-		id BIGINT PRIMARY KEY IDENTITY(1,1),
-		first_name NVARCHAR(150) NOT NULL,
-		last_name NVARCHAR(150) NOT NULL,
-		middle_name NVARCHAR(150),
-		birth_date DATE NOT NULL,
-		year_started INT NOT NULL,
-		rate MONEY NOT NULL
-	);
-END
-
-IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'TeachersGroups')
-BEGIN
-	CREATE TABLE TeachersGroups
-	(
-		teacher_id BIGINT CONSTRAINT FK_TeachersGroups_Teachers FOREIGN KEY REFERENCES Teachers(id),
-		group_id INT CONSTRAINT FK_TeachersGroups_Groups FOREIGN KEY REFERENCES Groups(id),
-		CONSTRAINT PK_TeachersGroups PRIMARY KEY (teacher_id, group_id)
 	);
 END
 
@@ -62,6 +15,16 @@ BEGIN
 	(
 		id INT PRIMARY KEY IDENTITY(1,1),
 		report_type_name NVARCHAR(10) NOT NULL
+	);
+END
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Groups')
+BEGIN
+	CREATE TABLE Groups
+	(
+		id INT PRIMARY KEY IDENTITY(1,1),
+		group_name NVARCHAR(16) NOT NULL,
+		study_field_id SMALLINT NOT NULL CONSTRAINT FK_Groups_StudyFields FOREIGN KEY REFERENCES StudyFields(id)
 	);
 END
 
@@ -96,13 +59,30 @@ BEGIN
 	);
 END
 
-IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'SubjectsStudyFields')
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Students')
 BEGIN
-	CREATE TABLE SubjectsStudyFields
+	CREATE TABLE Students
 	(
-		subject_id INT CONSTRAINT FK_SubjectsStudyFields_Subjects FOREIGN KEY REFERENCES Subjects(id),
-		study_field_id INT NOT NULL CONSTRAINT FK_SubjectsStudyFields_StudyFields FOREIGN KEY REFERENCES StudyFields(id),
-		CONSTRAINT PK_SubjectsStudyFields PRIMARY KEY (subject_id, study_field_id)
+		id INT PRIMARY KEY IDENTITY(1,1),
+		first_name NVARCHAR(150) NOT NULL,
+		last_name NVARCHAR(150) NOT NULL,
+		middle_name NVARCHAR(150),
+		birth_date date NOT NULL,
+		group_id INT NOT NULL CONSTRAINT FK_Students_Groups FOREIGN KEY REFERENCES Groups(id)
+	);
+END
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'Teachers')
+BEGIN
+	CREATE TABLE Teachers
+	(
+		id INT PRIMARY KEY IDENTITY(1,1),
+		first_name NVARCHAR(150) NOT NULL,
+		last_name NVARCHAR(150) NOT NULL,
+		middle_name NVARCHAR(150),
+		birth_date DATE NOT NULL,
+		year_started INT NOT NULL,
+		rate MONEY NOT NULL
 	);
 END
 
@@ -116,7 +96,7 @@ BEGIN
 		lesson_theme NVARCHAR(50),
 		is_done BIT,
 		group_id INT NOT NULL CONSTRAINT FK_Lessons_Groups FOREIGN KEY REFERENCES Groups(id),
-		teacher_id BIGINT NOT NULL CONSTRAINT FK_Lessons_Teachers FOREIGN KEY REFERENCES Teachers(id),
+		teacher_id INT NOT NULL CONSTRAINT FK_Lessons_Teachers FOREIGN KEY REFERENCES Teachers(id),
 		subject_id INT NOT NULL CONSTRAINT FK_Lessons_Subjects FOREIGN KEY REFERENCES Subjects(id)
 	);
 END
@@ -141,5 +121,25 @@ BEGIN
 		subject_id INT CONSTRAINT FK_Exams_Subjects FOREIGN KEY REFERENCES Subjects(id),
 		lesson_id INT CONSTRAINT FK_Exams_Lessons FOREIGN KEY REFERENCES Lessons(id),
 		CONSTRAINT PK_Exams PRIMARY KEY (subject_id, lesson_id)
+	);
+END
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'TeachersGroups')
+BEGIN
+	CREATE TABLE TeachersGroups
+	(
+		teacher_id INT CONSTRAINT FK_TeachersGroups_Teachers FOREIGN KEY REFERENCES Teachers(id),
+		group_id INT CONSTRAINT FK_TeachersGroups_Groups FOREIGN KEY REFERENCES Groups(id),
+		CONSTRAINT PK_TeachersGroups PRIMARY KEY (teacher_id, group_id)
+	);
+END
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'SubjectsStudyFields')
+BEGIN
+	CREATE TABLE SubjectsStudyFields
+	(
+		subject_id INT CONSTRAINT FK_SubjectsStudyFields_Subjects FOREIGN KEY REFERENCES Subjects(id),
+		study_field_id SMALLINT NOT NULL CONSTRAINT FK_SubjectsStudyFields_StudyFields FOREIGN KEY REFERENCES StudyFields(id),
+		CONSTRAINT PK_SubjectsStudyFields PRIMARY KEY (subject_id, study_field_id)
 	);
 END
