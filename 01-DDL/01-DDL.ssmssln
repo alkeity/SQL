@@ -11,6 +11,8 @@ Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "SelectData", "SelectData\Se
 EndProject
 Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Schedule", "Schedule\Schedule.ssmssqlproj", "{C77EB8F2-371A-44AD-9D33-E8824144545B}"
 EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Homework", "Homework\Homework.ssmssqlproj", "{66070931-31A4-4BB8-9F5C-FDE0FEC58EEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|Default = Default|Default
@@ -19,8 +21,9 @@ Global
 		{97981E43-85C5-4AB5-AF45-A6FC9F293F34}.Default|Default.ActiveCfg = Default
 		{ABE282CE-23CC-454F-8660-5820923B7637}.Default|Default.ActiveCfg = Default
 		{F80BAFF8-11C9-4861-BEBF-029696B1EE34}.Default|Default.ActiveCfg = Default
-		{E511128A-EC60-44F9-A661-59008FC4EC0F}.Default|Default.ActiveCfg = Default
 		{C77EB8F2-371A-44AD-9D33-E8824144545B}.Default|Default.ActiveCfg = Default
+		{66070931-31A4-4BB8-9F5C-FDE0FEC58EEF}.Default|Default.ActiveCfg = Default
+		{DC564F6D-7943-482A-8D74-A0824C899CD4}.Default|Default.ActiveCfg = Default
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
