@@ -1,12 +1,12 @@
 USE PD311_AcademyDesign;
 GO
 
-DECLARE @groupID AS INT = (SELECT id from Groups WHERE group_name = 'PD_321');
+DECLARE @groupID AS INT = (SELECT id from Groups WHERE group_name = 'PD_212');
 DECLARE @subjectID AS INT = (SELECT id from Subjects WHERE subject_name LIKE '%MS SQL Server%');
 DECLARE @lesson_amount AS SMALLINT = (SELECT amount_of_hours FROM Subjects WHERE subject_name LIKE '%MS SQL Server%');
 DECLARE @teacherID AS BIGINT = (SELECT id FROM Teachers WHERE last_name = 'Покидюк');
 
-DECLARE @start_date AS DATE = '2024-10-02';
+DECLARE @start_date AS DATE = '2023-11-27';
 DECLARE @start_time AS TIME = '13:30';
 DECLARE @cur_date AS DATE = GETDATE();
 
