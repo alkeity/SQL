@@ -15,6 +15,10 @@ Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Homework", "Homework\Homewo
 EndProject
 Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Procedures", "Procedures\Procedures.ssmssqlproj", "{7BD205ED-66E0-422C-8B08-50C7C17DCB09}"
 EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Functions", "Functions\Functions.ssmssqlproj", "{A8218D27-C57A-4DE2-AEF4-DB81C14ADF39}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Joins", "Joins\Joins.ssmssqlproj", "{1571C25E-9EE4-4FBD-BBCE-634D6BDD8E4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|Default = Default|Default
@@ -25,8 +29,10 @@ Global
 		{F80BAFF8-11C9-4861-BEBF-029696B1EE34}.Default|Default.ActiveCfg = Default
 		{C77EB8F2-371A-44AD-9D33-E8824144545B}.Default|Default.ActiveCfg = Default
 		{66070931-31A4-4BB8-9F5C-FDE0FEC58EEF}.Default|Default.ActiveCfg = Default
-		{9DACA23C-F91B-4269-AA8B-7D5BF7F6FF7D}.Default|Default.ActiveCfg = Default
 		{7BD205ED-66E0-422C-8B08-50C7C17DCB09}.Default|Default.ActiveCfg = Default
+		{F613959B-6F4D-467A-BC9B-C300FDD928B5}.Default|Default.ActiveCfg = Default
+		{A8218D27-C57A-4DE2-AEF4-DB81C14ADF39}.Default|Default.ActiveCfg = Default
+		{1571C25E-9EE4-4FBD-BBCE-634D6BDD8E4B}.Default|Default.ActiveCfg = Default
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
